@@ -22,7 +22,7 @@ import {
   updateRatesFailed,
 } from './actions';
 import { Selectors } from "./selectors";
-import {mapRatesToTargets, mapSymbols, setStartDate} from "../utils/mappers";
+import {mapRatesToTargets, mapSymbols, setStartDate} from "../utils/utils";
 
 @Injectable()
 export class Effects {

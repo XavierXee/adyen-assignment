@@ -1,10 +1,16 @@
+@import "./fonts";
+@import "./mixins";
+@import "./variables";
+
 input {
+  @include font-number;
+
+  font-size: $font-size-large;
+  max-width: $input-max-width;
   text-align: center;
   margin: auto;
-  font-size: 60px;
   background: none;
   display: block;
-  max-width: 300px;
   border: none;
   width: 100%;
 }
@@ -24,8 +30,7 @@ input[type=number] {
 }
 
 input[type=date] {
-  font-size: 16px;
-  width: 150px;
-  margin: 10px auto;
-  color: #000000;
+  font-size: $font-size-small;
+  width: $input-date-width;
+  margin: $input-date-margin;
 }

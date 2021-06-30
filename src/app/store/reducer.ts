@@ -8,7 +8,7 @@ import {
   UpdateStatePayload,
   ValueCurrencyRates
 } from "../models/models";
-import { convertFromSource } from "../utils/mappers";
+import { convertFromSource } from "../utils/utils";
 
 export const initialState: AppState = {
   currencies: [],

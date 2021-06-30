@@ -3,7 +3,7 @@
     <input type="number"
            min="0"
            pattern="([0-9]{1,3}).([0-9]{1,3})"
-           class="form-control"
+           class="app-header__section-input form-control"
            id="source-value"
            autocomplete="off"
            [(ngModel)]="source.value" name="source-value"
@@ -26,8 +26,8 @@
 </header>
 <main class="app-main color-scheme-secondary" role="main">
   <div id="content" class="app-main__content">
-    <section id="targets" class="main__content-section">
-      <div class="main__content-section-row" *ngFor="let target of targets.items; let index = index;">
+    <section id="targets" class="app-main__content-section">
+      <div class="app-main__content-section-row" *ngFor="let target of targets.items; let index = index;">
         <div class="form-group">
           <input type="number"
                  min="0"
@@ -51,7 +51,10 @@
         <div>
           <app-chart [data]="target"></app-chart>
         </div>
-        <div class="trash-icon" *ngIf="targets.items.length > 1">
+        <div class="app-main__content-section-row-info">
+          1 {{ source.currency }} = {{ target.rates[target.rates.length - 1] }} {{ target.currency }}
+        </div>
+        <div class="app-main__content-section-row-icon" *ngIf="targets.items.length > 1">
           <fa-icon (click)="removeTarget(index)" class="icon" [icon]="faTrashAlt"></fa-icon>
         </div>
       </div>

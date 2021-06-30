@@ -1,9 +1,31 @@
 // ----- Base ----- //
-$color-primary: #75C9C8;
+$color-primary: #1A85B0;
 $color-secondary: #fdfdfd;
+
+// ----- Layout / Sizing ----- //
+$header-height: 160px;
+$content-width: 500px;
+$main-padding: 10px;
+$row-padding: 20px 0 40px;
+$info-margin: 80px 0 20px;
+$box-shadow: 0 2px 10px -1px rgb(0, 0, 0, 0.4);
 
 // ----- Floating Button ----- //
 $floating-button--size: 50px;
 $floating-button--position: 20px;
 $floating-button--icon-size: 20px;
 $floating-button--icon-position: 14px;
+
+// ----- Inputs ----- //
+$input-max-width: 280px;
+$input-date-width: 150px;
+$input-date-margin: 10px auto;
+$select-max-width: 300px;
+$select-margin: 10px auto 0;
+
+// ----- Misc ----- //
+$chart-width: 200px;
+
+// ----- Font Size ----- //
+$font-size-small: 16px;
+$font-size-large: 60px;

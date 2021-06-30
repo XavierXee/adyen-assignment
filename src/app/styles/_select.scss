@@ -1,11 +1,17 @@
+@import "./variables";
+@import "./fonts";
+@import "./mixins";
+
 select, select:focus, select:focus-visible {
+  @include font-text;
+
+  font-size: $font-size-small;
+  margin: $select-margin;
+  max-width: $select-max-width;
   text-align: center;
   text-align-last: center;
-  font-size: 16px;
-  margin: 10px auto 0;
   background: none;
   display: block;
-  max-width: 300px;
   border: none;
   outline: none;
   -webkit-appearance: none;

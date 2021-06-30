@@ -9,7 +9,7 @@ import {
 import { Selectors } from "./store/selectors";
 import { Observable } from "rxjs";
 import { Currency, Targets, ValueCurrency, ValueCurrencyRates } from "./models/models";
-import { convertFromTarget } from "./utils/mappers";
+import { convertFromTarget } from "./utils/utils";
 import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import { initialState } from "./store/reducer";
 
@@ -31,6 +31,7 @@ export class AppComponent implements OnInit {
     return this.selectors.selectTargets$;
   }
 
+  title = 'Currency Converter';
   faTrashAlt = faTrashAlt;
   source = initialState.source;
   targets = initialState.targets;

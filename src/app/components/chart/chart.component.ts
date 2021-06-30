@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {normalizeData} from "../../utils/mappers";
+import {normalizeData} from "../../utils/utils";
 
 @Component({
   selector: 'app-chart',

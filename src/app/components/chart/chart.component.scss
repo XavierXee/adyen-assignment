@@ -1,4 +1,6 @@
+@import './../../styles/variables';
+
 .chart {
-  width: 200px;
+  width: $chart-width;
   margin: auto;
 }

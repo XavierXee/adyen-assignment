@@ -1,6 +1,10 @@
 @import "./app/styles/variables";
+@import "./app/styles/fonts";
+@import "./app/styles/mixins";
 
 body {
+  @include font-text;
+
   margin: 0;
   background: $color-secondary;
 }

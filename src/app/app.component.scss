@@ -1,3 +1,4 @@
+@import "./styles/fonts";
 @import "./styles/variables";
 @import "./styles/base";
 @import "./styles/mixins";
@@ -5,44 +6,54 @@
 @import "./styles/input";
 
 .app-header {
+  box-shadow: $box-shadow;
+  height: $header-height;
   position: fixed;
   width: 100%;
-  height: 160px;
   z-index: 1;
 
   .app-header__section {
-    color: white;
-    padding: 10px;
+    padding: $main-padding;
+    color: $color-secondary;
+
+    .app-header__section-input {
+      color: $color-secondary;
+    }
   }
 }
 
 .app-main {
+  padding-top: $header-height;
   display: flex;
   flex-direction: row;
   justify-content: center;
-  padding-top: 160px;
 
   .app-main__content {
-    width: 500px;
+    width: $content-width;
     display: flex;
     flex-direction: column;
 
-    .main__content-section {
+    .app-main__content-section {
+      padding: $main-padding;
       flex-grow: 1;
       display: flex;
       flex-direction: column;
-      padding: 10px;
 
-      .main__content-section-row {
-        position: relative;
+      .app-main__content-section-row {
+        padding: $row-padding;
         border-top: dotted 1px $color-primary;
-        padding: 20px 0 40px;
+        position: relative;
 
         &:first-child {
           border-top: none;
         }
 
-        .trash-icon {
+        .app-main__content-section-row-info {
+          margin: $info-margin;
+          text-align: center;
+        }
+
+        .app-main__content-section-row-icon {
           position: absolute;
           bottom: 14px;
           left: calc(50% - 3px);
