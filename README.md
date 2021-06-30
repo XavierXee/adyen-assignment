@@ -8,6 +8,7 @@ Thanks for your consideration and for taking time reviewing it.
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.1.0.
 State management is handled with NgRx
 Cypress is used as the end-to-end framework
+Karma for unit tests
 
 ##Quick Start
 
