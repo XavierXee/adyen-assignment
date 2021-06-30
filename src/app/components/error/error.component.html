@@ -1,0 +1,4 @@
+<div *ngIf="(error$ | async)" class="app-error">
+  <fa-icon class="app-error__icon" [icon]="faExclamationTriangle"></fa-icon>
+  <span>{{ (error$ | async)?.message }}</span>
+</div>

@@ -1,0 +1,13 @@
+@import "./../../styles/variables";
+
+.app-error {
+  font-size: $font-size-small;
+  background: $error-background-color;
+  color: $error-color;
+  padding: $main-padding;
+  text-align: center;
+
+  .app-error__icon {
+    margin-right: 4px;
+  }
+}
