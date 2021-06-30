@@ -81,7 +81,7 @@ export class AppComponent implements OnInit {
   }
 
   private initSubscriptions(): void {
-    this.source$.subscribe((source: any) => {
+    this.source$.subscribe((source: ValueCurrency) => {
       this.source = { ...source };
     });
 

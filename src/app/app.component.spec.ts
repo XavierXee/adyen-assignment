@@ -4,7 +4,7 @@ import { AppComponent } from './app.component';
 import { Selectors } from "./store/selectors";
 import { selectorsStub } from "../testing/stubs";
 import {
-  ActionsSubject, createAction,
+  ActionsSubject,
   ReducerManager,
   ReducerManagerDispatcher,
   StateObservable,
@@ -23,7 +23,6 @@ import * as AppReducer from "./store/reducer";
 import { StoreDevtoolsModule } from "@ngrx/store-devtools";
 import { EffectsModule } from "@ngrx/effects";
 import { Effects } from "./store/effects";
-import { ChartComponent } from "./components/chart/chart.component";
 
 describe('AppComponent', () => {
   let component: AppComponent;

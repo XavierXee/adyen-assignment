@@ -1,18 +1,8 @@
-import {createFeatureSelector, createSelector, Store} from '@ngrx/store';
-import {Observable} from "rxjs";
-import {Injectable} from "@angular/core";
-import {distinctUntilChanged} from "rxjs/operators";
-import {AppState, Currency, Targets, ValueCurrency} from "../models/models";
-
-// export interface CurrenciesState {
-//   currencies: string[];
-// }
-//
-// export interface AppState {
-//   currencies: string[];
-// }
-
-// export const selectState = createFeatureSelector<AppState>('AppState');
+import { createSelector, Store } from '@ngrx/store';
+import { Observable } from "rxjs";
+import { Injectable } from "@angular/core";
+import { distinctUntilChanged } from "rxjs/operators";
+import { AppState, Currency, Targets, ValueCurrency } from "../models/models";
 
 export const selectState = (state: any) => state.appState;
 
@@ -57,6 +47,5 @@ export class Selectors {
 
   constructor(
     private store: Store<AppState>
-  ) {
-  }
+  ) {}
 }

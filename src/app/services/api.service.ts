@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, from } from 'rxjs';
+import { Observable } from 'rxjs';
 import Axios from 'axios-observable';
 
 @Injectable({
@@ -13,17 +13,9 @@ export class ApiService {
     return Axios.get(`${this.baseUrl}/currencies.json`);
   }
 
-  // getRates(): Observable<any> {
   getRates(start: string, end: string, base: string, symbols: string): Observable<any> {
     return Axios.get(`${this.baseUrl}/time-series.json`, {
       params: { app_id: this.appId, start, end, base, symbols }
-      // params: {
-      //   app_id: this.appId,
-      //   start: '2021-05-29',
-      //   end: '2021-06-29',
-      //   base: 'EUR',
-      //   symbols: 'CAD,USD'
-      // }
     });
   }
 }
