@@ -6,6 +6,7 @@ Here is my attempt at solving the currency converter exercise.
 Thanks for your consideration and for taking time reviewing it.
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.1.0.
+State management is handled with NgRx
 
 ##Features
 * Select a source currency
