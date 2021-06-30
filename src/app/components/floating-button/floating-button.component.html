@@ -1,0 +1,12 @@
+<div class="floating-button">
+  <fa-icon class="icon" [icon]="faPlus"></fa-icon>
+  <select class="form-control select"
+          required
+          [(ngModel)]="newTarget"
+          (change)="addTarget()"
+  >
+    <option *ngFor="let currency of (currencies | async)" [value]="currency.code">
+      {{ currency.name }} ({{ currency.code }})
+    </option>
+  </select>
+</div>

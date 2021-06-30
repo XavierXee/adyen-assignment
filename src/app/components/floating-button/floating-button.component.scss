@@ -1,0 +1,30 @@
+@import './../../styles/select';
+@import './../../styles/variables';
+
+.floating-button {
+  background-color: $color-primary;
+  width: $floating-button--size;
+  height: $floating-button--size;
+  bottom: $floating-button--position;
+  right: $floating-button--position;
+  border-radius: 50%;
+  color: white;
+  position: fixed;
+
+  .icon {
+    top: $floating-button--icon-position;
+    font-size: $floating-button--icon-size;
+    width: $floating-button--size;
+    text-align: center;
+    position: absolute;
+  }
+
+  .select {
+    height: $floating-button--size;
+    width: $floating-button--size;
+    color: rgba(0, 0, 0, 0);
+    margin: 0;
+    position: absolute;
+    z-index: 1;
+  }
+}
