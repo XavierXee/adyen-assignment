@@ -5,6 +5,7 @@ import { Currency } from "../../models/models";
 import { Selectors } from "../../store/selectors";
 import { Store } from "@ngrx/store";
 import { addTarget } from "../../store/actions";
+import {FormControl} from "@angular/forms";
 
 @Component({
   selector: 'app-floating-button',
@@ -18,8 +19,8 @@ export class FloatingButtonComponent {
 
   @Output() update = new EventEmitter<null>();
 
-  newTarget: string = '';
   faPlus = faPlus;
+  form = new FormControl();
 
   constructor(
     private store: Store,
@@ -27,8 +28,8 @@ export class FloatingButtonComponent {
   ) { }
 
   addTarget(): void {
-    this.store.dispatch(addTarget({currency: this.newTarget}));
-    this.newTarget = '';
+    this.store.dispatch(addTarget({currency: this.form.value}));
+    this.form.setValue('');
     this.update.emit();
   }
 }

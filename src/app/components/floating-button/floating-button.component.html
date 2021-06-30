@@ -2,7 +2,7 @@
   <fa-icon class="icon" [icon]="faPlus"></fa-icon>
   <select class="form-control select"
           required
-          [(ngModel)]="newTarget"
+          [formControl]="form"
           (change)="addTarget()"
   >
     <option *ngFor="let currency of (currencies | async)" [value]="currency.code">
