@@ -1,5 +1,8 @@
+import { HttpErrorResponse } from "@angular/common/http";
+
 export interface AppState extends PartialState{
   currencies: Currency[];
+  error?: ErrorPayload | null | undefined,
 }
 
 export interface PartialState {
@@ -49,5 +52,6 @@ export interface RemoveTargetPayload {
 }
 
 export interface ErrorPayload {
-  message: any;
+  message: string;
+  error?: HttpErrorResponse;
 }

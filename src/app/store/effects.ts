@@ -23,6 +23,7 @@ import {
 } from './actions';
 import { Selectors } from "./selectors";
 import {mapRatesToTargets, mapSymbols, setStartDate} from "../utils/utils";
+import {HttpErrorResponse} from "@angular/common/http";
 
 @Injectable()
 export class Effects {
@@ -40,11 +41,13 @@ export class Effects {
           });
           return getAllCurrenciesSuccess({ currencies })
         }),
-        // catchError(() => {
-        //   return getAllCurrenciesFailed({
-        //     message: 'Error fetching currencies'
-        //   })
-        // })
+        catchError((errorResponse: HttpErrorResponse) => {
+          console.log(errorResponse);
+          return of(getAllCurrenciesFailed({
+            message: 'Error fetching currencies',
+            error: errorResponse
+          }));
+        })
       ))
     )
   );
@@ -62,10 +65,12 @@ export class Effects {
         map(({ data }: any) => {
           return updateRatesSuccess(mapRatesToTargets(data));
         }),
-        // catchError((err: any) => {
-        //   console.log(err)
-        //   return getAllCurrenciesSuccess([])
-        // })
+        catchError((errorResponse: HttpErrorResponse) => {
+          return of(updateRatesFailed({
+            message: 'Error fetching rates',
+            error: errorResponse
+          }));
+        })
       )
     })
     )

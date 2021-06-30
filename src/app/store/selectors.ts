@@ -2,9 +2,16 @@ import { createSelector, Store } from '@ngrx/store';
 import { Observable } from "rxjs";
 import { Injectable } from "@angular/core";
 import { distinctUntilChanged } from "rxjs/operators";
-import { AppState, Currency, Targets, ValueCurrency } from "../models/models";
+import {AppState, Currency, ErrorPayload, Targets, ValueCurrency} from "../models/models";
 
 export const selectState = (state: any) => state.appState;
+
+export const selectError = createSelector(
+  selectState,
+  (state: AppState) => {
+    return state.error;
+  }
+);
 
 export const selectCurrencies = createSelector(
   selectState,
@@ -43,6 +50,10 @@ export class Selectors {
 
   get state$(): Observable<AppState> {
     return this.store.select(selectState);
+  }
+
+  get selectError$(): Observable<ErrorPayload | null | undefined> {
+    return this.store.select(selectError);
   }
 
   constructor(

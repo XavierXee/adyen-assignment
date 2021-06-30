@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import {ErrorHandler, NgModule} from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -20,13 +20,15 @@ import { NgxChartsModule } from "@swimlane/ngx-charts";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { FloatingButtonComponent } from './components/floating-button/floating-button.component';
 import { DatePickerComponent } from './components/date-picker/date-picker.component';
+import { ErrorComponent } from './components/error/error.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ChartComponent,
     FloatingButtonComponent,
-    DatePickerComponent
+    DatePickerComponent,
+    ErrorComponent
   ],
   imports: [
     CommonModule,
@@ -46,7 +48,11 @@ import { DatePickerComponent } from './components/date-picker/date-picker.compon
     }),
     EffectsModule.forRoot([Effects])
   ],
-  providers: [Effects, Selectors],
+  providers: [
+    Effects,
+    Selectors,
+    ErrorHandler
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

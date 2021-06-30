@@ -30,8 +30,8 @@ export const updateRatesSuccess = createAction(
 );
 
 export const updateRatesFailed = createAction(
-  '[Currency Converter] Update Rates Success',
-  props<RatesPayload>()
+  '[Currency Converter] Update Rates Failed',
+  props<ErrorPayload>()
 );
 
 export const updateValues = createAction(

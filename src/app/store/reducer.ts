@@ -3,7 +3,7 @@ import * as Actions from './actions';
 import {
   AddTargetPayload,
   AllCurrencyPayload,
-  AppState,
+  AppState, ErrorPayload,
   RatesPayload, RemoveTargetPayload,
   UpdateStatePayload,
   ValueCurrencyRates
@@ -31,6 +31,17 @@ export const initialState: AppState = {
 
 function storeCurrencies(state: AppState, action: AllCurrencyPayload) {
   state = { ...state, currencies: action.currencies };
+  return state;
+}
+
+function storeError(state: AppState, action: ErrorPayload) {
+  state = {
+    ...state,
+    error: {
+      message: action.message,
+      error: action.error
+    }
+  };
   return state;
 }
 
@@ -103,7 +114,9 @@ function updateValues(state: AppState, action: UpdateStatePayload) {
 const currencyConverterReducer = createReducer(
   initialState,
   on(Actions.getAllCurrenciesSuccess, storeCurrencies),
+  on(Actions.getAllCurrenciesFailed, storeError),
   on(Actions.updateRatesSuccess, updateTargetsRates),
+  on(Actions.updateRatesFailed, storeError),
   on(Actions.updateValues, updateValues),
   on(Actions.addTarget, addTarget),
   on(Actions.removeTarget, removeTarget),
