@@ -1,0 +1,15 @@
+input {
+  text-align: center;
+  margin: auto;
+  //color: #fff;
+  font-size: 100px;
+  background: none;
+  display: block;
+  max-width: 300px;
+  border: none;
+  width: 100%;
+}
+
+input:focus {
+  outline: none;
+}
