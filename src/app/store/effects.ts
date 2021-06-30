@@ -22,8 +22,8 @@ import {
   updateRatesFailed,
 } from './actions';
 import { Selectors } from "./selectors";
-import {mapRatesToTargets, mapSymbols, setStartDate} from "../utils/utils";
-import {HttpErrorResponse} from "@angular/common/http";
+import { mapRatesToTargets, mapSymbols, setStartDate } from "../utils/utils";
+import { HttpErrorResponse } from "@angular/common/http";
 
 @Injectable()
 export class Effects {

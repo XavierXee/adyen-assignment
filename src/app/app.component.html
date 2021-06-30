@@ -6,8 +6,9 @@
            pattern="([0-9]{1,3}).([0-9]{1,3})"
            class="app-header__section-input form-control"
            id="source-value"
+           name="source-value"
            autocomplete="off"
-           [(ngModel)]="source.value" name="source-value"
+           [(ngModel)]="source.value"
            (keyup)="updateState(false)"
     >
     <div class="form-group">
@@ -34,9 +35,10 @@
                  min="0"
                  pattern="([0-9]{1,3}).([0-9]{1,3})"
                  class="form-control"
-                 id="{{ 'target-' + index}}"
+                 id="{{ 'target-' + index }}"
+                 name="{{ 'target-' + index }}"
                  autocomplete="off"
-                 [(ngModel)]="target.value" name="source-value"
+                 [(ngModel)]="target.value"
                  (keyup)="updateSourceValue(target)"
           >
           <select class="form-control select"
