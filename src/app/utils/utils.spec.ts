@@ -2,31 +2,17 @@ import {
   convertFromSource,
   convertFromTarget,
   mapRatesToTargets,
-  mapSymbols,
+  mapSymbols, normalizeData,
   setStartDate
 } from "./utils";
+import {
+  mockMappedRates,
+  mockRates,
+  mockDataRates,
+  mockTargets, normalizedDataRates
+} from "../../testing/mocks";
 
 describe('Utils', () => {
-  const mockSource = {
-    value: 1,
-      currency: 'EUR'
-  };
-
-  const mockTargets = {
-    sourceCurrency: 'EUR',
-    items: [
-      {
-        value: 2,
-        currency: 'USD',
-        rates: [1.5]
-      },
-      {
-        value: 4,
-        currency: 'CAD',
-        rates: [4.5]
-      },
-    ]
-  };
 
   it('should retrieve a string date that is 30 days before', () => {
     expect(setStartDate('2021-05-31')).toEqual('2021-05-01');
@@ -44,7 +30,11 @@ describe('Utils', () => {
     expect(mapSymbols(mockTargets)).toEqual('USD,CAD');
   });
 
-  it('should convert a value from a rate', () => {
-    // expect(mapRatesToTargets('2021-05-31')).toEqual('2021-05-01');
+  it('should map rates to targets', () => {
+    expect(mapRatesToTargets(mockRates)).toEqual(mockMappedRates);
+  });
+
+  it('should normalize a set of data from 1 to 2', () => {
+    expect(normalizeData(mockDataRates)).toEqual(normalizedDataRates);
   });
 });

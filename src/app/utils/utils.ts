@@ -1,4 +1,4 @@
-import {Targets, ValueCurrency, ValueCurrencyRates} from "../models/models";
+import {RatesPayload, Targets, ValueCurrency, ValueCurrencyRates} from "../models/models";
 import sub from 'date-fns/sub';
 import format from 'date-fns/format';
 
@@ -14,11 +14,11 @@ export function convertFromTarget(targetValue: number, rate: number): number {
   return targetValue * (1 / rate);
 }
 
-export function mapSymbols(targets: Targets): any {
+export function mapSymbols(targets: Targets): string {
   return targets.items.map((targetItem: ValueCurrency) => targetItem.currency).join(',');
 }
 
-export function mapRatesToTargets(data: any): any {
+export function mapRatesToTargets(data: any): RatesPayload {
   return {
     sourceCurrency: data.base,
     items: Object
