@@ -1,52 +1,33 @@
-<header class="color-scheme-primary">
-  <section id="source">
+<header class="app-header color-scheme-primary">
+  <section id="source" class="app-header__section">
+    <input type="number"
+           min="0"
+           pattern="([0-9]{1,3}).([0-9]{1,3})"
+           class="form-control"
+           id="source-value"
+           autocomplete="off"
+           [(ngModel)]="source.value" name="source-value"
+           (keyup)="updateState(false)"
+    >
     <div class="form-group">
-      <input type="number"
-             class="form-control color-scheme-primary"
-             min="0"
-             pattern="([0-9]{1,3}).([0-9]{1,3})"
-             id="source-value"
-             autocomplete="off"
-             name="source-value"
-             [(ngModel)]="source.value"
-             (keydown)="format($event)"
-             (keyup)="update(false)"
-      >
-
       <select class="form-control select color-scheme-primary"
               id="source-currency"
               required
               [(ngModel)]="source.currency"
-              (change)="update(true)"
+              (change)="updateState(true)"
       >
         <option *ngFor="let currency of (currencies | async)" [value]="currency.code">
           {{ currency.name }} ({{ currency.code }})
         </option>
       </select>
     </div>
-    <input type="date"
-           min="2000-01-01"
-           max="{{ dateMax }}"
-           [(ngModel)]="end"
-           (change)="update(true)"
-    >
+    <app-date-picker [value]="end" (update)="updateEndDate($event)"></app-date-picker>
   </section>
 </header>
-<div id="floating-button">
-  <select class="form-control select"
-          required
-          (change)="addTarget($event)"
-  >
-    <option value="" disabled selected>+</option>
-    <option *ngFor="let currency of (currencies | async)" [value]="currency.code">
-      {{ currency.name }} ({{ currency.code }})
-    </option>
-  </select>
-</div>
-<main class="color-scheme-secondary">
-  <div id="content">
-    <section id="targets">
-      <section class="target-row" *ngFor="let target of targets.items; let index = index;">
+<main class="app-main color-scheme-secondary" role="main">
+  <div id="content" class="app-main__content">
+    <section id="targets" class="main__content-section">
+      <div class="main__content-section-row" *ngFor="let target of targets.items; let index = index;">
         <div class="form-group">
           <input type="number"
                  min="0"
@@ -60,20 +41,23 @@
           <select class="form-control select"
                   required
                   [(ngModel)]="target.currency"
-                  (change)="update(true)"
+                  (change)="updateState(true)"
           >
             <option *ngFor="let currency of (currencies | async)" [value]="currency.code">
               {{ currency.name }} ({{ currency.code }})
             </option>
           </select>
         </div>
-        <section>
+        <div>
           <app-chart [data]="target"></app-chart>
-        </section>
-<!--        <fa-icon [icon]="faTrashAlt"></fa-icon>-->
-      </section>
+        </div>
+        <div class="trash-icon" *ngIf="targets.items.length > 1">
+          <fa-icon (click)="removeTarget(index)" class="icon" [icon]="faTrashAlt"></fa-icon>
+        </div>
+      </div>
     </section>
   </div>
 </main>
-<footer>
+<footer class="app-footer">
+  <app-floating-button (update)="updateState(true)"></app-floating-button>
 </footer>

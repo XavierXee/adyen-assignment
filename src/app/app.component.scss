@@ -1,133 +1,57 @@
 @import "./styles/variables";
+@import "./styles/base";
 @import "./styles/mixins";
+@import "./styles/select";
+@import "./styles/input";
 
-.color-scheme-primary {
-  background: $color-primary;
-  color: $color-secondary;
-}
-
-.color-scheme-secondary {
-  background: $color-secondary;
-  color: $color-primary;
-}
-
-#floating-button {
-  background-color: #75C9C8;
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  color: white;
-  bottom: 20px;
-  right: 20px;
+.app-header {
   position: fixed;
+  width: 100%;
+  height: 160px;
+  z-index: 1;
+
+  .app-header__section {
+    color: white;
+    padding: 10px;
+  }
 }
 
-header {
-  //@include primary;
-}
-
-main {
-  //@include secondary;
-
+.app-main {
   display: flex;
   flex-direction: row;
   justify-content: center;
+  padding-top: 160px;
 
-  #content {
-    //width: 100%;
+  .app-main__content {
     width: 500px;
-    //height: 500px;
     display: flex;
     flex-direction: column;
-    //border: solid 1px #000000;
 
-    section {
+    .main__content-section {
       flex-grow: 1;
       display: flex;
       flex-direction: column;
-    }
+      padding: 10px;
 
-    #source {
-      background-color: red;
-      color: white;
-    }
+      .main__content-section-row {
+        position: relative;
+        border-top: dotted 1px $color-primary;
+        padding: 20px 0 40px;
 
-    #targets {
-      padding: 0;
-      //background-color: white;
-      //color: red;
+        &:first-child {
+          border-top: none;
+        }
+
+        .trash-icon {
+          position: absolute;
+          bottom: 14px;
+          left: calc(50% - 3px);
+
+          .icon {
+            cursor: pointer;
+          }
+        }
+      }
     }
   }
-}
-
-.icon {
-
-}
-
-.target-row {
-  border-top: dotted 1px $color-primary;
-  padding: 20px 0;
-
-  &:first-child {
-    border-top: none;
-  }
-}
-
-section {
-  padding: 10px;
-}
-
-input {
-  @include secondary;
-
-  text-align: center;
-  margin: auto;
-  //color: #fff;
-  font-size: 60px;
-  background: none;
-  display: block;
-  max-width: 300px;
-  border: none;
-  width: 100%;
-}
-
-input:focus {
-  outline: none;
-}
-
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
-
-input[type=number] {
-  -moz-appearance: textfield;
-}
-
-input[type=date] {
-  font-size: 16px;
-  width: 150px;
-  margin: 10px auto;
-  color: #000000;
-}
-
-select, select:focus, select:focus-visible {
-  text-align: center;
-  text-align-last: center;
-  font-size: 16px;
-  //color: #ffffff;
-  margin: 10px auto 0;
-  background: none;
-  display: block;
-  max-width: 300px;
-  border: none;
-  outline: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-}
-
-select::-ms-expand {
-  display: none;
 }

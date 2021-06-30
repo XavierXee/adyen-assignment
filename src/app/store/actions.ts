@@ -1,12 +1,10 @@
 import { createAction , props} from '@ngrx/store';
 import {
-  AllCurrencyPayload, AppState,
-  Currency,
+  AddTargetPayload,
+  AllCurrencyPayload,
   ErrorPayload,
-  RatesPayload,
-  SourcePayload,
-  TargetPayload, UpdateStatePayload,
-  ValueCurrency
+  RatesPayload, RemoveTargetPayload,
+  UpdateStatePayload,
 } from '../models/models';
 
 export const getAllCurrencies = createAction(
@@ -41,7 +39,12 @@ export const updateValues = createAction(
   props<UpdateStatePayload>()
 );
 
-export const updateSource = createAction(
-  '[Currency Converter] Update Source from Target Value',
-  props<UpdateStatePayload>()
+export const addTarget = createAction(
+  '[Currency Converter] Add New Target',
+  props<AddTargetPayload>()
+);
+
+export const removeTarget = createAction(
+  '[Currency Converter] Remove Target',
+  props<RemoveTargetPayload>()
 );

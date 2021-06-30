@@ -3,14 +3,15 @@ import { ActionsSubject, Store } from '@ngrx/store';
 import {
   updateValues,
   getAllCurrencies,
-  updateRates
+  updateRates,
+  removeTarget
 } from "./store/actions";
 import { Selectors } from "./store/selectors";
 import { Observable } from "rxjs";
 import { Currency, Targets, ValueCurrency, ValueCurrencyRates } from "./models/models";
-import format from 'date-fns/format';
-import {convertFromTarget} from "./utils/mappers";
+import { convertFromTarget } from "./utils/mappers";
 import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
+import { initialState } from "./store/reducer";
 
 @Component({
   selector: 'app-root',
@@ -18,11 +19,6 @@ import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-
-  get dateMax(): string {
-    return format(new Date(), 'yyyy-MM-dd');
-  }
-
   get currencies(): Observable<Currency[]> {
     return this.selectors.selectAllCurrencies$;
   }
@@ -36,34 +32,25 @@ export class AppComponent implements OnInit {
   }
 
   faTrashAlt = faTrashAlt;
+  source = initialState.source;
+  targets = initialState.targets;
+  end = initialState.end;
 
-  title = 'adyen-assignment';
-  source = {
-    value: 1,
-    currency: 'CAD'
-  };
-  targets = {
-    sourceCurrency: 'EUR',
-    items: [
-      { value: 2, currency: 'USD', rates: [2]}
-    ]
-  };
-  end = '2021-06-29';
+  constructor(
+    private store: Store,
+    private actionSubject: ActionsSubject,
+    private selectors: Selectors
+  ) {}
 
   ngOnInit() {
+    this.initSubscriptions();
     this.store.dispatch(getAllCurrencies());
     this.store.dispatch(updateRates());
+  }
 
-    this.source$.subscribe((source: any) => {
-      this.source = { ...source };
-    });
-    this.target$.subscribe((targets: Targets) => {
-      this.targets = { ...targets, items: targets.items
-        .map((item: ValueCurrencyRates) => {
-          return { ... item };
-        })
-      };
-    });
+  updateEndDate(value: string) {
+    this.end = value;
+    this.updateState(true);
   }
 
   updateSourceValue(target: any): void {
@@ -71,19 +58,15 @@ export class AppComponent implements OnInit {
       target.value,
       target.rates[target.rates.length - 1]
     )
-    this.update(false);
+    this.updateState(false);
   }
 
-  format($event: Event): void {
-
+  removeTarget(index: number): void {
+    this.store.dispatch(removeTarget({ index }));
+    this.updateState(false);
   }
 
-  addTarget($event: Event): void {
-
-  }
-
-  update(reloadRates?: boolean): void {
-    console.log(this.source.value);
+  updateState(reloadRates?: boolean): void {
     this.store.dispatch(updateValues({
       state: {
         end: this.end,
@@ -96,10 +79,17 @@ export class AppComponent implements OnInit {
     }
   }
 
-  constructor(
-    private store: Store,
-    private actionSubject: ActionsSubject,
-    private selectors: Selectors
-  ) {
+  private initSubscriptions(): void {
+    this.source$.subscribe((source: any) => {
+      this.source = { ...source };
+    });
+
+    this.target$.subscribe((targets: Targets) => {
+      this.targets = { ...targets, items: targets.items
+          .map((item: ValueCurrencyRates) => {
+            return { ... item };
+          })
+      };
+    });
   }
 }

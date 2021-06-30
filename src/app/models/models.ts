@@ -1,3 +1,13 @@
+export interface AppState extends PartialState{
+  currencies: Currency[];
+}
+
+export interface PartialState {
+  end: string;
+  source: ValueCurrency;
+  targets: Targets;
+}
+
 export interface Currency {
   code: string;
   name: string;
@@ -8,22 +18,13 @@ export interface ValueCurrency {
   currency: string;
 }
 
-export interface ValueCurrencyRates {
-  value: number;
-  currency: string;
+export interface ValueCurrencyRates extends ValueCurrency {
   rates: number[];
 }
 
 export interface Targets {
   sourceCurrency: string;
   items: ValueCurrencyRates[];
-}
-
-export interface AppState {
-  currencies: Currency[];
-  end: string;
-  source: ValueCurrency;
-  targets: Targets;
 }
 
 export interface AllCurrencyPayload {
@@ -35,23 +36,16 @@ export interface RatesPayload {
   sourceCurrency: string;
 }
 
-export interface SourcePayload {
-  source: ValueCurrency;
-}
-
-export interface TargetPayload {
-  target: ValueCurrency;
-  index: number;
-}
-
-export interface PartialState {
-  end: string;
-  source: ValueCurrency;
-  targets: Targets;
-}
-
 export interface UpdateStatePayload {
   state: PartialState;
+}
+
+export interface AddTargetPayload {
+  currency: string;
+}
+
+export interface RemoveTargetPayload {
+  index: number;
 }
 
 export interface ErrorPayload {

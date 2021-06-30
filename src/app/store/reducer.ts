@@ -1,13 +1,14 @@
 import { Action, createReducer, on } from '@ngrx/store';
 import * as Actions from './actions';
 import {
+  AddTargetPayload,
   AllCurrencyPayload,
   AppState,
-  RatesPayload,
+  RatesPayload, RemoveTargetPayload,
   UpdateStatePayload,
   ValueCurrencyRates
 } from "../models/models";
-import {convertFromSource, convertFromTarget, setStartDate} from "../utils/mappers";
+import { convertFromSource } from "../utils/mappers";
 
 export const initialState: AppState = {
   currencies: [],
@@ -22,18 +23,8 @@ export const initialState: AppState = {
       {
         value: 2,
         currency: 'USD',
-        rates: [3]
+        rates: []
       },
-      {
-        value: 3,
-        currency: 'CAD',
-        rates: [4]
-      },
-      {
-        value: 3,
-        currency: 'BTC',
-        rates: [4]
-      }
     ]
   }
 };
@@ -43,8 +34,27 @@ function storeCurrencies(state: AppState, action: AllCurrencyPayload) {
   return state;
 }
 
-function updateSource(state: AppState, action: AllCurrencyPayload) {
-  state = { ...state, currencies: action.currencies };
+function addTarget(state: AppState, action: AddTargetPayload) {
+  const updatedTargets = {
+    ...state.targets,
+    items: [...state.targets.items]
+  };
+  updatedTargets.items.push({
+    value: 0,
+    rates: [],
+    currency: action.currency,
+  });
+  state = { ...state, targets: updatedTargets };
+  return state;
+}
+
+function removeTarget(state: AppState, action: RemoveTargetPayload) {
+  const updatedTargets = {
+    ...state.targets,
+    items: [...state.targets.items]
+  };
+  updatedTargets.items.splice(action.index, 1);
+  state = { ...state, targets: updatedTargets };
   return state;
 }
 
@@ -95,6 +105,8 @@ const currencyConverterReducer = createReducer(
   on(Actions.getAllCurrenciesSuccess, storeCurrencies),
   on(Actions.updateRatesSuccess, updateTargetsRates),
   on(Actions.updateValues, updateValues),
+  on(Actions.addTarget, addTarget),
+  on(Actions.removeTarget, removeTarget),
 );
 
 export function reducer(state: AppState | undefined, action: Action) {

@@ -1,0 +1,9 @@
+@import "./mixins";
+
+.color-scheme-primary {
+  @include primary;
+}
+
+.color-scheme-secondary {
+  @include secondary;
+}

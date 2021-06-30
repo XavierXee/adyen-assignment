@@ -11,22 +11,22 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { CardComponent } from './components/card/card.component';
 
 import { Effects } from './store/effects';
 import * as AppReducer from './store/reducer';
 import { Selectors } from "./store/selectors";
-import { NumberInputComponent } from './components/number-input/number-input.component';
 import { ChartComponent } from './components/chart/chart.component';
-import {NgxChartsModule} from "@swimlane/ngx-charts";
-import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import { NgxChartsModule } from "@swimlane/ngx-charts";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { FloatingButtonComponent } from './components/floating-button/floating-button.component';
+import { DatePickerComponent } from './components/date-picker/date-picker.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    CardComponent,
-    NumberInputComponent,
-    ChartComponent
+    ChartComponent,
+    FloatingButtonComponent,
+    DatePickerComponent
   ],
   imports: [
     CommonModule,

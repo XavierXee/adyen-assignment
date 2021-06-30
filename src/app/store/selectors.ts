@@ -44,7 +44,7 @@ export class Selectors {
   }
 
   get selectSource$(): Observable<ValueCurrency> {
-    return this.store.select(selectSource);
+    return this.store.select(selectSource).pipe(distinctUntilChanged());
   }
 
   get selectTargets$(): Observable<Targets> {
@@ -53,7 +53,6 @@ export class Selectors {
 
   get state$(): Observable<AppState> {
     return this.store.select(selectState);
-    // return this.store.select<any>((state: any) => state);
   }
 
   constructor(
