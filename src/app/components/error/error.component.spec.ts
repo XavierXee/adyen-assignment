@@ -1,6 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ErrorComponent } from './error.component';
+import {ActionsSubject, ReducerManager, ReducerManagerDispatcher, StateObservable, Store} from "@ngrx/store";
+import {Selectors} from "../../store/selectors";
+import {selectorsStub} from "../../../testing/stubs";
 
 describe('ErrorComponent', () => {
   let component: ErrorComponent;
@@ -8,7 +11,15 @@ describe('ErrorComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ErrorComponent ]
+      declarations: [ ErrorComponent ],
+      providers: [
+        Store,
+        StateObservable,
+        ActionsSubject,
+        ReducerManager,
+        ReducerManagerDispatcher,
+        { provide: Selectors, useValue: selectorsStub },
+      ],
     })
     .compileComponents();
   });

@@ -7,6 +7,21 @@ Thanks for your consideration and for taking time reviewing it.
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.1.0.
 State management is handled with NgRx
+Cypress is used as the end-to-end framework
+
+##Quick Start
+
+Run
+`npm install`
+then
+`npm start`
+
+##Quick Start
+
+Run
+`npm install`
+then
+`npm start`
 
 ##Features
 * Select a source currency
@@ -24,6 +39,7 @@ Many improvements can still be made to this exercise:
 * Default source and target currencies could be detected by user/navigator data (e.g with reverse geolocoding)
 * More complete e2e testing scenarios
 * API call optimization (e.g amount of data retrieved per call could be lowered)
+* Splitting app.component into smaller child components
 
 
 ## Development server
